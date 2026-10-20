@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Little Steps Daycare Management System">
+  <title><%= title %> | Little Steps</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="/" aria-label="Little Steps home"><span class="brand-mark">✿</span><span>Little Steps</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <% if (currentUser) { %>
+        <a href="/dashboard">Dashboard</a>
+        <% if (['admin','parent'].includes(currentUser.role)) { %><a href="/children">Children</a><a href="/bookings">Bookings</a><% } %>
+        <% if (['admin','staff'].includes(currentUser.role)) { %><a href="/attendance">Attendance</a><% } %>
+        <% if (currentUser.role === 'admin') { %><a href="/staff">Staff</a><a href="/reports">Reports</a><% } %>
+      <% } %>
+    </nav>
+    <div class="nav-user">
+      <% if (currentUser) { %>
+        <span class="role-chip"><%= currentUser.role %></span>
+        <form class="logout-form" action="/logout" method="post"><button class="secondary small-button" type="submit">Log out</button></form>
+      <% } else { %>
+        <a href="/login">Log in</a><a class="button small-button" href="/register">Get started</a>
+      <% } %>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="container">
+    <% if (notice) { %><div class="alert <%= notice.type === 'success' ? 'success' : 'error' %>" role="status"><%= notice.message %></div><% } %>

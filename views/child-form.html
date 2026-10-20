@@ -1,0 +1,11 @@
+<%- include('partials/header.html', { title }) %>
+<div class="page-heading"><div><div class="eyebrow">Enrollment</div><h1><%= child ? 'Edit child record' : 'Register a child' %></h1><p>Keep the child's information accurate and up to date.</p></div><a class="button secondary" href="/children">← Back to children</a></div>
+<section class="panel"><form action="<%= child ? '/children/'+child.id+'/edit' : '/children' %>" method="post" class="form-grid">
+<div class="field"><label for="name">Child's full name *</label><input id="name" name="name" required maxlength="100" value="<%= child ? child.name : '' %>" placeholder="Child's full name"></div>
+<div class="field"><label for="dob">Date of birth *</label><input id="dob" name="dob" type="date" required value="<%= child ? child.dob : '' %>"></div>
+<div class="field"><label for="guardian">Guardian name</label><input id="guardian" name="guardian" maxlength="100" value="<%= child ? child.guardian : (currentUser.role==='parent' ? currentUser.name : '') %>" placeholder="Primary guardian"></div>
+<% if(currentUser.role==='admin' && !child){ %><div class="field"><label for="parent_id">Parent account *</label><select id="parent_id" name="parent_id" required><option value="">Choose parent account</option><% parents.forEach(p=>{ %><option value="<%= p.id %>"><%= p.name %> — <%= p.email %></option><% }) %></select><span class="helper">For this starter version, register the parent first, then ask them to add their child. Admin can edit any existing child record.</span></div><% } %>
+<% if(currentUser.role==='admin' && child){ %><div class="field"><label for="status">Enrollment status</label><select id="status" name="status"><option <%= child.status==='Active'?'selected':'' %>>Active</option><option <%= child.status==='Inactive'?'selected':'' %>>Inactive</option></select></div><% } %>
+<div class="field full"><label for="notes">Care notes</label><textarea id="notes" name="notes" maxlength="500" placeholder="Optional notes for the daycare team"><%= child ? child.notes : '' %></textarea><span class="helper">Demo only: do not enter real sensitive medical information.</span></div>
+<div class="form-actions"><button type="submit"><%= child ? 'Save changes' : 'Create child record' %></button><a class="button secondary" href="/children">Cancel</a></div></form></section>
+<%- include('partials/footer.html') %>

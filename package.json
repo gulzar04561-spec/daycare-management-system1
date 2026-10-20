@@ -1,0 +1,19 @@
+{
+  "name": "little-steps-daycare-management",
+  "version": "1.0.0",
+  "description": "AI-assisted daycare management system for a college project (HTML/CSS frontend, Node.js backend, built-in SQLite)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
+  }
+}

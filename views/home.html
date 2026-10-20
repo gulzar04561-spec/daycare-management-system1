@@ -1,0 +1,17 @@
+<%- include('partials/header.html', { title }) %>
+<section class="hero">
+  <div>
+    <div class="eyebrow">A little care goes a long way</div>
+    <h1>Big care for your little one's <span style="color:var(--brand)">big adventures.</span></h1>
+    <p>One welcoming place to manage child registrations, daycare bookings, attendance, and everyday care updates.</p>
+    <div class="form-actions"><a class="button" href="/register">Create parent account →</a><a class="button outline" href="/login">Sign in</a></div>
+    <p class="helper mt-16">A server-rendered demo built with HTML, CSS, Node.js, and SQLite.</p>
+  </div>
+  <div class="hero-art"><div class="hero-illustration" role="img" aria-label="Friendly flower illustration">🌼</div></div>
+</section>
+<section class="feature-grid" aria-label="System features">
+  <article class="feature-card"><div class="feature-icon">🧸</div><h3>Child records</h3><p>Keep child profiles, guardian details, and registration status organized.</p></article>
+  <article class="feature-card"><div class="feature-icon">📅</div><h3>Booking requests</h3><p>Parents submit requests while administrators review and update statuses.</p></article>
+  <article class="feature-card"><div class="feature-icon">🌱</div><h3>Care & attendance</h3><p>Staff record attendance and administrators view summary reports.</p></article>
+</section>
+<%- include('partials/footer.html') %>
